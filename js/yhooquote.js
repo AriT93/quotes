@@ -9,7 +9,7 @@ function getUrl(symbol){
 
 function parseData(result){
     var quotes = result.query.results.quote;
-    alert(quotes);
+
     $("#symbol").html(quotes.Symbol);
     $("#price").html(quotes.LastTradePriceOnly);
     $("#range").html(quotes.YearRange);
