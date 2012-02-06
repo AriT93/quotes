@@ -6,18 +6,36 @@
     <script type="text/javascript" src="js/backbone.js"></script>
     <script type="text/javascript" src="js/backbone-localstorage.js"></script>
     <script type="text/javascript" src="js/yhooquote.js"></script>
+    <script type="text/javascript" src="js/quoteapp.js"></script>
   </head>
   <body>
+    <script type="text/template" id="quote-template">
+      <div id=<%= Symbol %> >
+        <label>Price</label><p><%= LastTradePriceOnly%></p>
+        <label>Time</label><p><%= LastTradeDate%><%= LastTradeTime %></p>
+        <label>Range</label><p><%= YearRange %></p>
+        <label>Yield</label><p><%= DividendYield %></p>
+        <label>Date</label><p><%= DividendPayDate %></p>
+        <label>Share</label><p><%= DividendShare %></p>
+      </div>
+    </script>
+    <button id="add-quote">add symbol</button>
+    <ul id="quote-list">
+    </ul>
     <div id="quote">
       <p>click me</p>
-      <div id="symbol">
-
-      </div>
-      <div id="price">
-
-      </div>
-      <div id="range">
-
+      <div id="ttm">
+        <div id="symbol">
+        </div>
+        <div id="price">
+        </div>
+        <div id="time">
+        </div>
+        <div id="range">
+        </div>
+        <div id="div_yield"></div>
+        <div id="div_date"></div>
+        <div id="div_share"></div>
       </div>
     </div>
   </body>
