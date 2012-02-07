@@ -6,23 +6,24 @@ $(document).ready(function (){
 
     Quotes = Backbone.Collection.extend({
         initialize: function(models, options){
-            this.bind("add", options.view.addFriendLi);
+            //this.bind("add", options.view.addFriendLi);
         }
     });
 
       AppView = Backbone.View.extend({
-        el: $("#quote-area"),
+        el: $("body"),
         initialize: function(){
-            this.quotes = new Quotes(null, {view: this} );
+          this.quotes = new Quotes(null, {view: this} );
         },
         events: {
-          "click #add-quote" : "showPrompt"
+          "click #add-quote": "showPrompt"
         },
         render: function(){
-//            alert(_.pluck(this.qoutes.filter(), 'symbol'));
+            var quotelist=[];
             this.quotes.each(function(model){
-                alert(model.get('symbol'));
+                quotelist.push( model.get('symbol'));
             });
+            $.getJSON(getUrl(quotelist),parseData);
         },
         addsymbol: function(data){
             this.quotes.add(data);
@@ -31,6 +32,7 @@ $(document).ready(function (){
             var symbol = prompt("What Symbol");
             var quote_model = new Quote({symbol: symbol});
             this.quotes.add(quote_model);
+            this.render();
         },
         addFriendLi: function(model){
 
@@ -45,7 +47,7 @@ $(document).ready(function (){
 
 
     $("#quote").click(function(){
-        $.getJSON(getUrl("TTM,GOF"),parseData);
+        appview.render();
     });
 
 });

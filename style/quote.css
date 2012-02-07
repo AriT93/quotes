@@ -1,12 +1,27 @@
-.quotebox label{
-               display: table-cell;
-               min-width: 20px;
-               padding: 5px;
-}
 .qoutebox{
-         display: table;
+         display: table-row;
+}
+.quote_data_table{
+                 display: table-cell;
+}
+.quote-symbol{
+             min-width: 60px;
+             display: table-cell;
+             font-size: 24;
+             font-weight: bold;
+             color: blue;
+             font-family: tahoma, sans-serif;
+             vertical-align: middle;
+             text-align: center;
+             background: wheat;
+             padding-right: 3px;
 }
 .stock_data{
            display: table-cell;
-           padding: 3px;
+           padding: 0px 5px 5px 5px;
+           min-width: 100px;
+}
+.stock_row{
+          display: table-row;
+          padding-bottom: 5px;
 }
