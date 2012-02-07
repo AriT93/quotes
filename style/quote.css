@@ -2,7 +2,10 @@
          display: table-row;
 }
 .quote_data_table{
+                 padding-top: 10px;
                  display: table-cell;
+                 min-width: 500px;
+                 border-bottom: 3px solid green;
 }
 .quote-symbol{
              min-width: 60px;
@@ -15,11 +18,12 @@
              text-align: center;
              background: wheat;
              padding-right: 3px;
+             border-bottom: 3px solid green;
 }
 .stock_data{
            display: table-cell;
            padding: 0px 5px 5px 5px;
-           min-width: 100px;
+           min-width: 200px;
 }
 .stock_row{
           display: table-row;

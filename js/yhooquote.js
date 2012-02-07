@@ -6,9 +6,7 @@ function getUrl(symbol){
 
 };
 
-
 function parseData(result){
-
     $("#quote-area").empty();
     var template = _.template($("#quote-template").html());
     var quotes = result.query.results.quote;
