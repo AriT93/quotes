@@ -28,9 +28,6 @@ $(document).ready(function (){
                 quotelist.push( model.get('symbol'));
             });
             $.getJSON(getUrl(quotelist),parseData);
-            setTimeout(function(){
-                appview.render();
-            },60000);
         },
         addsymbol: function(data){
             Quotes.create(data);
