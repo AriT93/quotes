@@ -22,6 +22,7 @@ $(document).ready(function (){
             "click #add-quote": "showPrompt"
         },
         render: function(){
+            $("#quote-area").fadeOut('slow');
             var quotelist=[];
             Quotes.each(function(model){
                 quotelist.push( model.get('symbol'));
@@ -30,6 +31,7 @@ $(document).ready(function (){
         },
         addsymbol: function(data){
             Quotes.create(data);
+            this.render();
         },
         showPrompt: function(){
             var symbol = prompt("What Symbol");
