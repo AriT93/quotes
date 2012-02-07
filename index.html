@@ -7,36 +7,44 @@
     <script type="text/javascript" src="js/backbone-localstorage.js"></script>
     <script type="text/javascript" src="js/yhooquote.js"></script>
     <script type="text/javascript" src="js/quoteapp.js"></script>
+    <link rel="stylesheet" href="style/quote.css" type="text/css" media="screen" />
   </head>
   <body>
     <script type="text/template" id="quote-template">
-      <div id=<%= Symbol %> >
-        <label>Price</label><p><%= LastTradePriceOnly%></p>
-        <label>Time</label><p><%= LastTradeDate%><%= LastTradeTime %></p>
-        <label>Range</label><p><%= YearRange %></p>
-        <label>Yield</label><p><%= DividendYield %></p>
-        <label>Date</label><p><%= DividendPayDate %></p>
-        <label>Share</label><p><%= DividendShare %></p>
+      <div id=<%= Symbol %> class="quotebox">
+        <div class="symbol stock_data" id="symbol">
+          <%= Symbol %>
+        </div>
+        <div class="price stock_data">
+          <label for="price">Price</label>
+          <div id="price" class="stock_data"><%= LastTradePriceOnly %></div>
+        </div>
+        <div class="time stock_data">
+          <label>Time</label for="time">
+          <div id="time" class="stock_data"><%= LastTradeDate %>  <%= LastTradeTime %></div>
+        </div>
+        <div class="range stock_data">
+          <label for="range">Range</label>
+          <div id="range" class="stock_data"><%= YearRange %></div>
+        </div>
+        <div class="yield stock_data">
+          <label>Yield</label>
+          <div class="stock_data"><%= DividendYield %></div>
+        </div>
+        <div class="paydate stock_data">
+          <label>Date</label>
+          <div class="stock_data"><%= DividendPayDate %></div>
+        </div>
+        <div class="share stock_data">
+          <label>Share</label>
+          <div class="stock_data"><%= DividendShare %></div>
+        </div>
       </div>
     </script>
     <button id="add-quote">add symbol</button>
-    <ul id="quote-list">
-    </ul>
     <div id="quote">
       <p>click me</p>
-      <div id="ttm">
-        <div id="symbol">
-        </div>
-        <div id="price">
-        </div>
-        <div id="time">
-        </div>
-        <div id="range">
-        </div>
-        <div id="div_yield"></div>
-        <div id="div_date"></div>
-        <div id="div_share"></div>
-      </div>
     </div>
+    <div id="quote-area"></div>
   </body>
 </html>

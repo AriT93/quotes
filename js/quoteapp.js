@@ -10,13 +10,22 @@ $(document).ready(function (){
         }
     });
 
-    AppView = Backbone.View.extend({
-        el: $("body"),
+      AppView = Backbone.View.extend({
+        el: $("#quote-area"),
         initialize: function(){
-            this.quotes = new Quotes(null,{view: this});
+            this.quotes = new Quotes(null, {view: this} );
         },
         events: {
-            "click #add-quote" : "showPrompt"
+          "click #add-quote" : "showPrompt"
+        },
+        render: function(){
+//            alert(_.pluck(this.qoutes.filter(), 'symbol'));
+            this.quotes.each(function(model){
+                alert(model.get('symbol'));
+            });
+        },
+        addsymbol: function(data){
+            this.quotes.add(data);
         },
         showPrompt: function(){
             var symbol = prompt("What Symbol");
@@ -24,10 +33,16 @@ $(document).ready(function (){
             this.quotes.add(quote_model);
         },
         addFriendLi: function(model){
-            $("#quote-list").append("<li>" + model.get('symbol') + "</li>");
+
         }
     });
-    var appview = new AppView;
+    window.appview = new AppView;
+    var quote = new Quote({symbol: "gof"});
+    appview.addsymbol(quote);
+    var quote2 = new Quote({symbol : "TTM"});
+    appview.addsymbol(quote2);
+    appview.render();
+
 
     $("#quote").click(function(){
         $.getJSON(getUrl("TTM,GOF"),parseData);

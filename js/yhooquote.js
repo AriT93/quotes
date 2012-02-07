@@ -8,17 +8,12 @@ function getUrl(symbol){
 
 
 function parseData(result){
+    $("#quote-area").empty();
     var quotes = result.query.results.quote;
+    var html="";
     for(i = 0; i < quotes.length; i++){
         var template = _.template($("#quote-template").html(), quotes[i]);
-        $("#quote-list").append(template);
-//        template(quotes[i]);
-        $("#" + quotes[i].Symbol).html(quotes[i].Symbol);
-        $("#"+ quotes[i].Symbol.toLowerCase() +" #price").html(quotes[i].LastTradePriceOnly);
-        $("#range").html(quotes[i].YearRange);
-        $("#div_yield").html(quotes[i].DividendYield);
-        $("#div_date").html(quotes[i].DividendPayDate);
-        $("#div_share").html(quotes[i].DividendShare);
-        $("#time").html(quotes[i].LastTradeDate + ' ' + quotes[i].LastTradeTime);
+        html += template;
     }
+    $("#quote-area").html(html);
 }
