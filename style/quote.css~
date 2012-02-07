@@ -1,0 +1,12 @@
+.quotebox label{
+               display: table-cell;
+               min-width: 20px;
+               padding: 5px;
+}
+.qoutebox{
+         display: table;
+}
+.stock_data{
+           display: table-cell;
+           padding: 3px;
+}
