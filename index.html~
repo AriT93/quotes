@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/json2.js"></script>
+    <script type="text/javascript" src="js/underscore.js"></script>
+    <script type="text/javascript" src="js/backbone.js"></script>
+    <script type="text/javascript" src="js/backbone-localstorage.js"></script>
+    <script type="text/javascript" src="js/yhooquote.js"></script>
+    <script type="text/javascript" src="js/quoteapp.js"></script>
+    <link rel="stylesheet" href="style/quote.css" type="text/css" media="screen" />
+  </head>
+  <body>
+    <script type="text/template" id="quote-template">
+      <div id=<%= Symbol %> class="quotebox">
+        <div class="symbol stock_data" id="symbol">
+          <%= Symbol %>
+        </div>
+        <div class="price stock_data">
+          <label for="price">Price</label>
+          <div id="price" class="stock_data"><%= LastTradePriceOnly %></div>
+        </div>
+        <div class="time stock_data">
+          <label>Time</label for="time">
+          <div id="time" class="stock_data"><%= LastTradeDate %>  <%= LastTradeTime %></div>
+        </div>
+        <div class="range stock_data">
+          <label for="range">Range</label>
+          <div id="range" class="stock_data"><%= YearRange %></div>
+        </div>
+        <div class="yield stock_data">
+          <label>Yield</label>
+          <div class="stock_data"><%= DividendYield %></div>
+        </div>
+        <div class="paydate stock_data">
+          <label>Date</label>
+          <div class="stock_data"><%= DividendPayDate %></div>
+        </div>
+        <div class="share stock_data">
+          <label>Share</label>
+          <div class="stock_data"><%= DividendShare %></div>
+        </div>
+      </div>
+    </script>
+    <button id="add-quote">add symbol</button>
+    <div id="quote">
+      <p>click me</p>
+    </div>
+    <div id="quote-area"></div>
+  </body>
+</html>
