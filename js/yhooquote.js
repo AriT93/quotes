@@ -9,11 +9,13 @@ function getUrl(symbol){
 
 function parseData(result){
     $("#quote-area").empty();
-    var quotes = result.query.results.quote;
-    var html="";
-    for(i = 0; i < quotes.length; i++){
-        var template = _.template($("#quote-template").html(), quotes[i]);
-        html += template;
+    if(result){
+        var quotes = result.query.results.quote;
+        var html="";
+        for(i = 0; i < quotes.length; i++){
+            var template = _.template($("#quote-template").html(), quotes[i]);
+            html += template;
+        }
+        $("#quote-area").html(html);
     }
-    $("#quote-area").html(html);
 }

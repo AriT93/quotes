@@ -1,48 +1,47 @@
 $(document).ready(function (){
 
-    Quote = Backbone.Model.extend({
+    window.Quote = Backbone.Model.extend({
         symbol: null
     });
 
-    Quotes = Backbone.Collection.extend({
+    window.QuoteList = Backbone.Collection.extend({
+        model: Quote,
+        localStorage: new Store("quotes"),
         initialize: function(models, options){
-            //this.bind("add", options.view.addFriendLi);
         }
     });
 
-      AppView = Backbone.View.extend({
+    window.Quotes = new QuoteList;
+
+    AppView = Backbone.View.extend({
         el: $("body"),
         initialize: function(){
-          this.quotes = new Quotes(null, {view: this} );
+            Quotes.fetch();
         },
         events: {
-          "click #add-quote": "showPrompt"
+            "click #add-quote": "showPrompt"
         },
         render: function(){
             var quotelist=[];
-            this.quotes.each(function(model){
+            Quotes.each(function(model){
                 quotelist.push( model.get('symbol'));
             });
             $.getJSON(getUrl(quotelist),parseData);
         },
         addsymbol: function(data){
-            this.quotes.add(data);
+            Quotes.create(data);
         },
         showPrompt: function(){
             var symbol = prompt("What Symbol");
             var quote_model = new Quote({symbol: symbol});
-            this.quotes.add(quote_model);
+            Quotes.create(quote_model);
             this.render();
         },
         addFriendLi: function(model){
-
+            this.render();
         }
     });
     window.appview = new AppView;
-    var quote = new Quote({symbol: "gof"});
-    appview.addsymbol(quote);
-    var quote2 = new Quote({symbol : "TTM"});
-    appview.addsymbol(quote2);
     appview.render();
 
 
