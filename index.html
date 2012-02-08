@@ -12,9 +12,10 @@
   <body>
     <script type="text/template" id="quote-template">
       <div id=<%= Symbol %> class="quotebox">
-          <div class="quote-symbol">
-            <%= Symbol %>
-          </div>
+        <div class="quote-symbol">
+          <span class="symbol-destroy">X</span>
+          <span class="ticker"><%= Symbol %></span>
+        </div>
         <div class="quote_data_table">
           <div class="stock_row">
             <div class="price stock_data">
@@ -49,6 +50,9 @@
     <div id="quote">
       <button>Update Quotes</button>
     </div>
-    <div id="quote-area"></div>
+    <div id="quote-area">
+      <ul id="quote-list">
+      </ul>
+    </div>
   </body>
 </html>
