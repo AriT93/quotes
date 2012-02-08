@@ -10,15 +10,17 @@
 .quote-symbol{
              min-width: 60px;
              display: table-cell;
+             background: wheat;
+             padding-right: 3px;
+             border-bottom: 3px solid green;
+             vertical-align: middle;
+}
+.ticker{
              font-size: 24;
              font-weight: bold;
              color: blue;
              font-family: tahoma, sans-serif;
-             vertical-align: middle;
              text-align: center;
-             background: wheat;
-             padding-right: 3px;
-             border-bottom: 3px solid green;
 }
 .stock_data{
            display: table-cell;
@@ -28,4 +30,13 @@
 .stock_row{
           display: table-row;
           padding-bottom: 5px;
+}
+li{
+  list-style: none;
+}
+.symbol-destroy{
+  vertical-align: top;
+               text-align: left;
+  font-size: 8px;
+  color: black;
 }

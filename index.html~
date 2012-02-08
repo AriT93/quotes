@@ -12,7 +12,6 @@
   <body>
     <script type="text/template" id="quote-template">
       <div id=<%= Symbol %> class="quotebox">
-        <span class="symbol-destroy">X</span>
           <div class="quote-symbol">
             <%= Symbol %>
           </div>
@@ -45,11 +44,15 @@
           </div>
         </div>
       </div>
+      <span class="symbol-destroy">X</span>
     </script>
     <button id="add-quote">add symbol</button>
     <div id="quote">
       <button>Update Quotes</button>
     </div>
-    <div id="quote-area"></div>
+    <div id="quote-area">
+      <ul id="quote-list">
+      </ul>
+    </div>
   </body>
 </html>
