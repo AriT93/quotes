@@ -54,13 +54,8 @@ $(document).ready(function (){
             });
             $.getJSON(getUrl(quotelist),parseData);
         },
-        addsymbol: function(data){
-            Quotes.create(data);
-            this.render();
-        },
         showPrompt: function(){
             var symbol = prompt("What Symbol").toUpperCase();
-            $.getJSON(getUrl(symbol),this.getQuoteData);
             var quote_model = new Quote({symbol: symbol,id: symbol});
             Quotes.create(quote_model);
             this.render();
@@ -68,19 +63,32 @@ $(document).ready(function (){
         addQuoteLi: function(model){
             var q =  Quotes.get(model.Symbol);
             if(q){
-            q.set(model);
-            q.save();
+                q.set(model);
+                q.save();
             }else{
                 q = new Quote({symbol: model.Symbol,id:model.Symbol});
             }
             var view = new QuoteView({model: q});
             $("#quote-list").append(view.render().el);
         },
-        getQuoteData: function(result){
+        parseData: function(result){
+            $("#quote-list").empty();
             if(result.query.results){
-                var q = Quotes.get(result.query.results.quote.Symbol);
-                q.set(result.query.results.quote);
+                var quotes = result.query.results.quote;
+                for(i = 0; i < quotes.length; i++){
+                    var q = Quotes.get(quotes[i].Symbol);
+                    appview.addQuoteLi(quotes[i]);
+                }
+                if(result.query.count === 1){
+                    var q = Quotes.get(quotes.Symbol);
+                    appview.addQuoteLi(quotes);
+                }
             }
+        },
+        getUrl:function(symbol){
+            var q = escape('select * from yahoo.finance.quotes where symbol in ("' + symbol + '")');
+            var str = "http://query.yahooapis.com/v1/public/yql?q=" + q + "&format=json&env=http://datatables.org/alltables.env";
+            return str;
         }
     });
     window.appview = new AppView;
