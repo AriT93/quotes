@@ -1,19 +1,16 @@
 $(document).ready(function (){
-
-    window.Quote = Backbone.Model.extend({
+  var Quote = Backbone.Model.extend({
         clear: function(){
             this.destroy();
         }
     });
 
-    window.QuoteList = Backbone.Collection.extend({
+    var QuoteList = Backbone.Collection.extend({
         model: Quote,
         localStorage: new Store("quotes")
     });
 
-    window.Quotes = new QuoteList;
-
-    window.QuoteView = Backbone.View.extend({
+    var QuoteView = Backbone.View.extend({
         tagName: "li",
 
         template: _.template($("#quote-template").html()),
@@ -32,36 +29,40 @@ $(document).ready(function (){
             return this;
         },
         clear: function(){
-            Quotes.get(this.el.id).clear();
+            appview.collection.get(this.el.id).clear();
             $("#quote-list #"+this.el.id).fadeOut('slow',function(el){
             $(el).remove();
             });
         }
+
     });
 
-    window.AppView = Backbone.View.extend({
+    var AppView = Backbone.View.extend({
         el: $("body"),
         initialize: function(){
-            Quotes.fetch();
+            _.bindAll(this, 'render');
+            this.collection = new QuoteList();
+            this.collection.fetch();
+            this.render();
         },
         events: {
             "click #add-quote": "showPrompt"
         },
         render: function(){
             var quotelist=[];
-            Quotes.each(function(model){
+            this.collection.each(function(model){
                 quotelist.push( model.get('symbol'));
             });
-            $.getJSON(getUrl(quotelist),parseData);
+            $.getJSON(this.getUrl(quotelist),this.parseData);
         },
         showPrompt: function(){
             var symbol = prompt("What Symbol").toUpperCase();
             var quote_model = new Quote({symbol: symbol,id: symbol});
-            Quotes.create(quote_model);
+            this.collection.create(quote_model);
             this.render();
         },
         addQuoteLi: function(model){
-            var q =  Quotes.get(model.Symbol);
+            var q =  this.collection.get(model.Symbol);
             if(q){
                 q.set(model);
                 q.save();
@@ -76,23 +77,22 @@ $(document).ready(function (){
             if(result.query.results){
                 var quotes = result.query.results.quote;
                 for(i = 0; i < quotes.length; i++){
-                    var q = Quotes.get(quotes[i].Symbol);
+                    var q = appview.collection.get(quotes[i].Symbol);
                     appview.addQuoteLi(quotes[i]);
                 }
                 if(result.query.count === 1){
-                    var q = Quotes.get(quotes.Symbol);
+                    var q = appview.collection.get(quotes.Symbol);
                     appview.addQuoteLi(quotes);
                 }
             }
         },
-        getUrl:function(symbol){
+        getUrl: function(symbol){
             var q = escape('select * from yahoo.finance.quotes where symbol in ("' + symbol + '")');
             var str = "http://query.yahooapis.com/v1/public/yql?q=" + q + "&format=json&env=http://datatables.org/alltables.env";
             return str;
         }
     });
-    window.appview = new AppView;
-    appview.render();
+    var appview = new AppView();
 
      $("#quote").click(function(){
          appview.render();

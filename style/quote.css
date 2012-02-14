@@ -8,12 +8,13 @@
                  border-bottom: 3px solid green;
 }
 .quote-symbol{
-             min-width: 60px;
+             min-width: 100px;
              display: table-cell;
              background: wheat;
              padding-right: 3px;
              border-bottom: 3px solid green;
              vertical-align: middle;
+             text-align: center;
 }
 .ticker{
              font-size: 24;
@@ -37,6 +38,7 @@ li{
 .symbol-destroy{
   vertical-align: top;
                text-align: left;
+               float: left;
   font-size: 8px;
   color: black;
 }
