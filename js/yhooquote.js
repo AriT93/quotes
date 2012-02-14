@@ -12,13 +12,14 @@ function parseData(result){
     if(result.query.results){
     var quotes = result.query.results.quote;
         for(i = 0; i < quotes.length; i++){
+            var q = Quotes.get(quotes[i].Symbol);
             appview.addQuoteLi(quotes[i]);
         }
         if(result.query.count === 1){
+            var q = Quotes.get(quotes.Symbol);
             appview.addQuoteLi(quotes);
         }
     }
-    $("#quote-area").fadeIn('slow');
 }
 function getModelID(symbol){
    return Quotes.find(function(model){
