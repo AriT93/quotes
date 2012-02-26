@@ -1,0 +1,26 @@
+body{
+    font-family: sans-serif,Helvetica;
+    font-weight: bold;
+    font-size: medium;
+}
+.quotebox{
+         display: block;
+         background: #dcdcdc;
+}
+.symbol{
+       display: inline;
+       min-width: 60px;
+       font-size: large;
+       text-align: center;
+}
+.red{
+display: inline;
+color: white;
+background: red;
+}
+.green{
+display: inline;
+color: white;
+background: green;
+
+}

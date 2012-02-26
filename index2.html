@@ -8,14 +8,34 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.0/backbone-min.js"></script>
 
     <script src="googleFin.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="googleFin.css" type="text/css" media="screen" />
   </head>
   <body>
-<script type="text/template" id="tweetsTemplate">
-    <% _.each(tweets, function (tweet) { %>
-    <div class="tweet">
-        <p><%= tweet.t %>  &dash;  <%= tweet.l_cur %> (<%= tweet.c %> / <%= tweet.cp %>%)  &nbsp; &nbsp; &nbsp;<%= tweet.ltt %></p>
-    </div>
-    <% }); %>
+    <script type="text/template" id="quotesTemplate">
+      <% _.each(quotes, function (quote) { %>
+      <div class="quotebox row">
+        <div class="symbol span1">
+          <%= quote.t %>
+        </div>
+        <div class=
+             <% if(quote.c < 0){ %>
+                "red span6"
+                <% }else{ %>
+                "green span6"
+                <% } %> >
+             <div class="span1">
+               <%= quote.l_cur %>
+             </div>
+             <div class="span2">
+               (<%= quote.c %> / <%= quote.cp %>%)
+             </div>
+             <div class="span2">
+               <%= quote.ltt %>
+             </div>
+        </div>
+</div>
+<% }); %>
 </script>
-  </body>
+</body>
 </html>

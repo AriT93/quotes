@@ -1,11 +1,11 @@
 $(document).ready(function() {
     // Define the model
-    Tweet = Backbone.Model.extend();
+    Quote = Backbone.Model.extend();
 
     // Define the collection
-    Tweets = Backbone.Collection.extend(
+    Quotes = Backbone.Collection.extend(
         {
-            model: Tweet,
+            model: Quote,
             // Url to request when fetch() is called
             url: 'http://www.google.com/finance/info?infotype=infoquoteall&q=',
             parse: function(response) {
@@ -26,11 +26,11 @@ $(document).ready(function() {
         });
 
     // Define the View
-    TweetsView = Backbone.View.extend({
+    QuotesView = Backbone.View.extend({
         initialize: function() {
             _.bindAll(this, 'render', 'updateQuotes');
             // create a collection
-            this.collection = new Tweets;
+            this.collection = new Quotes;
             // Fetch the collection and call render() method
             var that = this;
             this.collection.fetch({
@@ -42,13 +42,13 @@ $(document).ready(function() {
             setTimeout(that.updateQuotes,60000);
         },
         // Use an extern template
-        template: _.template($('#tweetsTemplate').html()),
+        template: _.template($('#quotesTemplate').html()),
 
         render: function() {
             // Fill the html with the template and the collection
-            $(".tweet").fadeOut('slow');
-            $(this.el).html(this.template({ tweets: this.collection.toJSON() }));
-            $(".tweet").fadeIn('slow');
+            $(".quote").fadeOut('slow');
+            $(this.el).html(this.template({ quotes: this.collection.toJSON() }));
+            $(".quote").fadeIn('slow');
         },
         updateQuotes: function(){
             var that = this;
@@ -61,7 +61,7 @@ $(document).ready(function() {
         }
     });
 
-    window.app = new TweetsView({
+    window.app = new QuotesView({
         // define the el where the view will render
         el: $('body')
     });
