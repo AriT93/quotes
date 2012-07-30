@@ -32,6 +32,9 @@ $(document).ready(function() {
             // create a collection
             this.collection = new Quotes;
             // Fetch the collection and call render() method
+            if (localStorage.getItem("quotes") == ""|| localStorage.getItem("quotes") == null){
+                localStorage.setItem("quotes","INDEXDJX:.DJI");
+            }
             var that = this;
             this.collection.fetch({
                 symbols: that.symbols,
