@@ -28,7 +28,7 @@ $(document).ready(function() {
     // Define the View
     QuotesView = Backbone.View.extend({
         initialize: function() {
-            _.bindAll(this, 'render', 'updateQuotes');
+            _.bindAll(this, 'render', 'updateQuotes','showPrompt');
             // create a collection
             this.collection = new Quotes;
             // Fetch the collection and call render() method
@@ -41,6 +41,9 @@ $(document).ready(function() {
             });
             setTimeout(that.updateQuotes,60000);
         },
+        events:{
+            "click #add-quote": "showPrompt"
+        },
         // Use an extern template
         template: _.template($('#quotesTemplate').html()),
 
@@ -50,7 +53,13 @@ $(document).ready(function() {
             $(this.el).html(this.template({ quotes: this.collection.toJSON() }));
             $(".quote").fadeIn('slow');
         },
-        updateQuotes: function(){
+        showPrompt: function(){
+            var symbol = prompt("What Symbol").toUpperCase();
+            quotesOld = localStorage.getItem("quotes");
+            localStorage.setItem("quotes",quotesOld + "," + symbol);
+            this.updateQuotes();
+        },
+               updateQuotes: function(){
             var that = this;
             this.collection.fetch({
                 success: function(){
