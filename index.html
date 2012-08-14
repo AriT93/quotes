@@ -19,9 +19,11 @@
         <div class=
              <% if(quote.c < 0){ %>
                 "red span6"
-                <% }else{ %>
+                <% }else if(quote.c == 0){ %>
+                "black span6"
+                <% }else{ %> 
                 "green span6"
-                <% } %> >
+                <%} %> >
              <div class="span1">
                <%= quote.l_cur %>
              </div>
