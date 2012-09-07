@@ -33,13 +33,24 @@
              <div class="span2">
                <%= quote.ltt %>
              </div>
-        </div>
+      </div>
 </div>
 <% }); %>
-<button id="add-quote">add symbol</button>
-<button id="del-quote">remove symbol</button>
+<div class="row-fluid,span8">
+  <button id="add-quote">add symbol</button>
+  <button id="del-quote">remove symbol</button>
+</div>
 </script>
-  </head>
-  <body>
+</head>
+<body>
+  <div class="hero-unit">
+    Quote tracking
+  </div>
+  <div class="container-fluid">
+      <div class="row-fluid,span8">
+        <div id="quotes">
+        </div>
+    </div>
+  </div>
 </body>
 </html>

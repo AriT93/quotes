@@ -59,8 +59,7 @@ $(document).ready(function() {
         },
         showPrompt: function(){
             var symbol = prompt("What Symbol").toUpperCase();
-            quotesOld = localStorage.getItem("quotes");
-            localStorage.setItem("quotes",quotesOld + "," + symbol);
+            localStorage.setItem("quotes",localStorage.getItem("quotes") + "," + symbol);
             this.updateQuotes();
         },
         removeSymbol: function(){
@@ -81,6 +80,6 @@ $(document).ready(function() {
 
     window.app = new QuotesView({
         // define the el where the view will render
-        el: $('body')
+        el: $('#quotes')
     });
 });
