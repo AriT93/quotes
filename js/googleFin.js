@@ -22,6 +22,11 @@ $(document).ready(function() {
                 }, options);
 
                 return $.ajax(params);
+            },
+            remove: function(deleted){
+                var arSym = localStorage.getItem("quotes").split(',');
+                var newArr = new Array();for(k in arSym) if(arSym[k] != deleted) newArr.push(arSym[k]);
+                localStorage.setItem("quotes",newArr.join(','));
             }
         });
 
@@ -64,7 +69,7 @@ $(document).ready(function() {
         },
         removeSymbol: function(){
             var symbol = prompt("What Symbol").toUpperCase();
-            localStorage.setItem("quotes",localStorage.getItem("quotes").replace(symbol,""));
+            this.collection.remove(symbol);
             this.updateQuotes();
         },
         updateQuotes: function(){
