@@ -70,6 +70,7 @@ $(document).ready(function() {
         removeSymbol: function(){
             var symbol = prompt("What Symbol").toUpperCase();
             this.collection.remove(symbol);
+            this.collection.remove("");
             this.updateQuotes();
         },
         updateQuotes: function(){
