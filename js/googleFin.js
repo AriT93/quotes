@@ -45,7 +45,8 @@ $(document).ready(function() {
             setTimeout(that.updateQuotes,60000);
         },
         events:{
-            "click #add-quote": "showPrompt"
+            "click #add-quote": "showPrompt",
+            "click #del-quote": "removeSymbol"
         },
         // Use an extern template
         template: _.template($('#quotesTemplate').html()),
@@ -62,7 +63,12 @@ $(document).ready(function() {
             localStorage.setItem("quotes",quotesOld + "," + symbol);
             this.updateQuotes();
         },
-               updateQuotes: function(){
+        removeSymbol: function(){
+            var symbol = prompt("What Symbol").toUpperCase();
+            localStorage.setItem("quotes",localStorage.getItem("quotes").replace(symbol,""));
+            this.updateQuotes();
+        },
+        updateQuotes: function(){
             var that = this;
             this.collection.fetch({
                 success: function(){
