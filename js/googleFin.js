@@ -16,7 +16,7 @@ $(document).ready(function() {
                 var that = this;
                 var params = _.extend({
                     type: 'GET',
-                    dataType: 'data',
+                    dataType: 'json',
                     url: that.url + localStorage.getItem("quotes").toString(),
                     processData: false
                 }, options);
